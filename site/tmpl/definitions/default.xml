@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_CGDICTIONARY_TITLE_LIST_VIEW" option="View">
+        <message>
+                        <![CDATA[COM_CGDICTIONARY_TITLE_LIST_VIEW_DESC]]>
+        </message>
+	</layout>
+	<fields name="request">
+		<!-- Basic options. -->
+		<fieldset name="request">
+		<field type="note" name="note0" label="COM_CGDICTIONARY_NOTE_MENU" heading="p" />
+		<field	name="iso_nbcol" type="number"	min="1"	max="10" step="1" useglobal="true"
+			label="COM_CGDICTIONARY_NBCOL"	description="COM_CGDICTIONARY_NBCOLDESC" 	/>
+   		<field name="hide_definition"
+				type="radio" class="btn-group btn-group-yesno"	 useglobal="true"
+				label="COM_CGDICTIONARY_HIDEDEF" description="COM_CGDICTIONARY_HIDEDEFDESC">
+				<option value="click">COM_CGDICTIONARY_CLICK</option>
+				<option value="hover">COM_CGDICTIONARY_HOVER</option>
+				<option value="false">JNO</option>
+		</field>
+		</fieldset>
+	</fields>
+</metadata>

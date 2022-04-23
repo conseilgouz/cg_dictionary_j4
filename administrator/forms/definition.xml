@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+<fieldset>
+	<field name="id" type="hidden" default="0" 
+		readonly="true" class="readonly"
+	/>
+	<field name="word" type="text"
+		label="COM_CGDICTIONARY_FORM_WORD"
+		description="COM_CGDICTIONARY_FORM_WORD_DESC" 
+		required="true"  />
+	<field name="definition" type="editor"
+		label="COM_CGDICTIONARY_FORM_DEFINITION"
+		filter="safehtml"
+		description="COM_CGDICTIONARY_FORM_DEFINITION_DESC" 
+		required="true"  />
+	<field name="family" type="text"
+		label="COM_CGDICTIONARY_FORM_FAMILY"
+		description="COM_CGDICTIONARY_FORM_FAMILY_DESC" 
+	    default="" />
+</fieldset>
+</form>

@@ -1,0 +1,51 @@
+/* Dictionary */
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 480px) {
+	.isotope_item{ min-width: 100% }
+}
+.isotope_item {
+	height:auto;border-bottom: 0.5px solid #888;
+}
+.isotope_item.letter {
+height:1.5em;background-color:#ffff00;text-align: center;	
+}
+.cg_a {float:left; margin-right:1em}
+
+.right{float:right}
+
+.isotope_item.active{
+  z-index: 9999999999;
+  background:#adc;
+}
+/* display definition on click */
+div.cg_text{
+  overflow: hidden;
+  visibility: hidden;
+  height:0;
+  position: relative;
+  bottom: 0;
+  right:1em;
+  z-index: 9999999999;
+  background:#adc;
+  text-align:center;
+}
+/*  diplay definition on hover */
+.cg_a .gloss:hover::after {
+  background: #adc;
+  color: #000;
+  border-radius: 5px;
+  content: attr(gloss);
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 350px;
+}
+.cg_text.active {
+  visibility: visible !important;
+  height:auto;
+}
+

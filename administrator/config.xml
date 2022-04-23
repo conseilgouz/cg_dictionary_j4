@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset label="COM_CGDICTIONARY" name="com_cgdictionary">
+		<field type="note" name="note0" label="COM_CGDICTIONARY_NOTE_CONFIG" heading="p" />
+		<field	name="iso_nbcol" type="number"	default="1"	min="1"	max="10" step="1"
+			label="COM_CGDICTIONARY_NBCOL"	description="COM_CGDICTIONARY_NBCOLDESC" 	/>
+   		<field name="hide_definition"
+				type="radio" class="btn-group btn-group-yesno"	default="false" 
+				label="COM_CGDICTIONARY_HIDEDEF" description="COM_CGDICTIONARY_HIDEDEFDESC">
+				<option value="click">COM_CGDICTIONARY_CLICK</option>
+				<option value="hover">COM_CGDICTIONARY_HOVER</option>
+				<option value="false">JNO</option>
+		</field>
+        
+    </fieldset>
+    <fieldset name="permissions"
+	description="JCONFIG_PERMISSIONS_DESC" label="JCONFIG_PERMISSIONS_LABEL">
+		<field 
+            name="rules" type="rules" component="com_cgdictionary"
+            class="inputbox" filter="rules" validate="rules"
+            label="JCONFIG_PERMISSIONS_LABEL"
+            section="component" />
+	</fieldset>
+</config>

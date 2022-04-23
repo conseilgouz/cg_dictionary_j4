@@ -1,0 +1,35 @@
+<changelogs>
+	<changelog>
+		<element>com_cgdictionary</element>
+		<type>component</type>
+		<version>2.0.2</version>
+        <note>
+            <item>Update : 25/11/2021</item>
+        </note>
+        <fix>
+            <item>SEF URL</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>com_cgdictionary</element>
+		<type>component</type>
+		<version>2.0.1</version>
+        <note>
+            <item>Update : 04/11/2021</item>
+        </note>
+        <addition>
+            <item>Joomla 4.0 : webassets</item>
+        </addition>
+	</changelog>
+	<changelog>
+		<element>com_cgdictionary</element>
+		<type>component</type>
+		<version>2.0.0</version>
+        <note>
+            <item>Update : 18/10/2021</item>
+        </note>
+        <addition>
+            <item>Joomla 4.0 compatibility</item>
+        </addition>
+	</changelog>
+</changelogs>
