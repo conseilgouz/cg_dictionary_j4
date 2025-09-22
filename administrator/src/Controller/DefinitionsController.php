@@ -1,9 +1,8 @@
 <?php
 /**
- * @version     2.0.2
- * @package     cg_dictionary for Joomla 4.0
- * @copyright   Copyright (C) 2021. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     cg_dictionary for Joomla 4.x/5.x/6.x
+ * @copyright   Copyright (C) 2025. All rights reserved.
+ * @license     GNU General Public License version 3 or later; see LICENSE.txt
  * @author      ConseilgGouz à partir de Dictionary de www.web-eau.net
  **/
 namespace ConseilGouz\Component\CGDictionary\Administrator\Controller;
@@ -13,6 +12,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\AdminController;
 use Joomla\CMS\Router\Route;
+use Joomla\Database\DatabaseInterface;
 use Joomla\Utilities\ArrayHelper;
 
 class DefinitionsController extends AdminController {
@@ -29,12 +29,12 @@ class DefinitionsController extends AdminController {
 	public function delete()
 	{
 		// Get the input
-		$input = Factory::getApplication()->input;
+		$input = Factory::getApplication()->getInput();
 		$pks = $input->post->get('cid', array(), 'array');
 		
 		$count = 0;
 		foreach ($pks as $pk)	{
-			$db = Factory::getDbo();
+			$db = Factory::getContainer()->get(DatabaseInterface::class);
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__cg_dictionary'));
 			$query->where($db->quoteName('id') . ' = '.$pk);
@@ -56,7 +56,7 @@ class DefinitionsController extends AdminController {
 	public function saveOrderAjax()
 	{
 		// Get the input
-		$input = Factory::getApplication()->input;
+		$input = Factory::getApplication()->getInput();
 		$pks = $input->post->get('cid', array(), 'array');
 		$order = $input->post->get('order', array(), 'array');
 

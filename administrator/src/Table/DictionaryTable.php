@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @version     2.0.2
- * @package     cg_dictionary for Joomla 4.0
- * @copyright   Copyright (C) 2018. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     cg_dictionary for Joomla 4.x/5.x/6.x
+ * @copyright   Copyright (C) 2025. All rights reserved.
+ * @license     GNU General Public License version 3 or later; see LICENSE.txt
  * @author      ConseilgGouz à partir de Dictionary de www.web-eau.net
  **/
 namespace ConseilGouz\Component\CGDictionary\Administrator\Table;
 
 defined('_JEXEC') or die('Restricted access');
-use Joomla\CMS\Table\Table;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Table\Table;
 use Joomla\Database\DatabaseDriver;
+use Joomla\Database\DatabaseInterface;
 use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
 
@@ -29,8 +29,8 @@ class DictionaryTable extends Table
     }
 	function getListQuery()
 	{
-		$db			= $this->getDbo();
-		$query		= $db->getQuery(true);
+		$db		= Factory::getContainer()->get(DatabaseInterface::class);
+		$query	= $db->getQuery(true);
 		$query->select(
 			't.id , t.word, t.definition'
 		);

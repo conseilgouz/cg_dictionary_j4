@@ -21,8 +21,8 @@ HTMLHelper::_('behavior.multiselect');
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 $wa->registerAndUseStyle('dictionary', 'media/com_cgdictionary/css/dictionary.css');
 
-$user	= Factory::getUser();
-$userId	= $user->get('id');
+$user	= Factory::getApplication()->getIdentity();
+$userId	= $user->id;
 $listOrder	= $this->state->get('list.ordering');
 $listDirn	= $this->state->get('list.direction');
 $canOrder	= $user->authorise('core.edit.state', 'com_cgdictionary');

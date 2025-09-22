@@ -16,8 +16,8 @@ class DisplayController extends BaseController {
 
     public function display($cachable = false, $urlparams = false) {
 
-        $view = Factory::getApplication()->input->getCmd('view', 'definitions');
-        Factory::getApplication()->input->set('view', $view);
+        $view = Factory::getApplication()->getInput()->getCmd('view', 'definitions');
+        Factory::getApplication()->getInput()->set('view', $view);
 
         parent::display($cachable, $urlparams);
 

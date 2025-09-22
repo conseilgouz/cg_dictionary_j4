@@ -1,21 +1,21 @@
 <?php
 /**
- * @version     2.0.2
  * @package     cg_dictionary
- * @copyright   Copyright (C) 2021. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2025. All rights reserved.
+ * @license     GNU General Public License version 3 or later; see LICENSE.txt
  * @author      ConseilgGouz à partir de Dictionary de www.web-eau.net
  **/
  
 namespace ConseilGouz\Component\CGDictionary\Administrator\Model;
 
 defined('_JEXEC') or die;
-use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Table\Table;
-use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\MVC\Factory\MVCFactoryInterface;
+use Joomla\CMS\MVC\Model\ListModel;
+use Joomla\CMS\Table\Table;
+use Joomla\Database\DatabaseInterface;
+use Joomla\Utilities\ArrayHelper;
 
 class DefinitionsModel extends ListModel
 {
@@ -80,7 +80,7 @@ class DefinitionsModel extends ListModel
      */
     protected function getListQuery() {
         // Create a new query object.
-        $db = $this->getDbo();
+        $db = Factory::getContainer()->get(DatabaseInterface::class);
         $query = $db->getQuery(true);
 
         // Select the required fields from the table.

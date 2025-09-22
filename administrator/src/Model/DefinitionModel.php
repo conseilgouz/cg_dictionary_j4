@@ -1,17 +1,17 @@
 <?php
 /**
- * @version     2.0.2
- * @package     cg_dictionary for Joomla 4.0
- * @copyright   Copyright (C) 2021. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     cg_dictionary for Joomla 4.x/5.x/6.x
+ * @copyright   Copyright (C) 2025. All rights reserved.
+ * @license     GNU General Public License version 3 or later; see LICENSE.txt
  * @author      ConseilgGouz à partir de Dictionary de www.web-eau.net
  **/
 namespace ConseilGouz\Component\CGDictionary\Administrator\Model;
-use Joomla\Registry\Registry;
 use Joomla\CMS\Factory;
-use Joomla\CMS\MVC\Model\AdminModel;
-use Joomla\CMS\Table\Table;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\Registry\Registry;
+use Joomla\CMS\Table\Table;
+use Joomla\Database\DatabaseInterface;
 
 class DefinitionModel extends AdminModel {
 
@@ -28,7 +28,7 @@ class DefinitionModel extends AdminModel {
 	 */
 	public function getTable($type = '', $prefix = 'DictionaryTable', $config = array())
 	{
-	    $db = Factory::getDBo();
+	    $db = Factory::getContainer()->get(DatabaseInterface::class);
 	    return Table::getInstance('DictionaryTable','ConseilGouz\\Component\\CGDictionary\Administrator\\Table\\', array('dbo' => $db));
 	    
 		// return Table::getInstance($type, $prefix, $config);
@@ -77,7 +77,7 @@ class DefinitionModel extends AdminModel {
 		if (empty($table->id)) {
 			// Set ordering to the last item if not set
 			if (@$table->ordering === '') {
-				$db = Factory::getDbo();
+				$db = Factory::getContainer()->get(DatabaseInterface::class);
 				$db->setQuery('SELECT MAX(ordering) FROM #__cg_dictionary');
 				$max = $db->loadResult();
 				$table->ordering = $max+1;

@@ -13,6 +13,8 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 
+$this->pagination = array();
+
 $doc = Factory::getDocument();
 
 HTMLHelper::_('bootstrap.framework');
@@ -31,11 +33,11 @@ if (!$defhidden) $defhidden = $params->get('hide_definition');
 /** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 
-$doc->addStyleSheet(JURI::base() . 'media/com_cgdictionary/css/dictionary.css');
-$doc->addScript(JURI::base() . 'media/com_cgdictionary/js/imagesloaded.min.js');
-$doc->addScript(JURI::base() . 'media/com_cgdictionary/js/isotope.min.js');
-$doc->addScript(JURI::base() . 'media/com_cgdictionary/js/packery-mode.min.js');
-$doc->addScript(JURI::base() . 'media/com_cgdictionary/js/dictionary.js');
+$wa->registerAndUseStyle('dictionary','media/com_cgdictionary/css/dictionary.css');
+$wa->registerAndUseScript('imagesloaded', 'media/com_cgdictionary/js/imagesloaded.min.js');
+$doc->registerAndUseScript('isotope','media/com_cgdictionary/js/isotope.min.js');
+$doc->registerAndUseScript('packery','media/com_cgdictionary/js/packery-mode.min.js');
+$doc->registerAndUseScript('dictionary','media/com_cgdictionary/js/dictionary.js');
 
 // send parameters to ditionary.js
 $doc->addScriptOptions('cg_dictionary', 

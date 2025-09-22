@@ -1,19 +1,20 @@
 <?php
 /**
-* CG Dictionary Component  - Joomla 4.0.0 Component 
-* Version			: 2.0.2
+* CG Dictionary Component  - Joomla 4.x/5.x/6.x Component 
 * Package			: CG Dictionary
-* copyright 		: Copyright (C) 2021 ConseilGouz. All rights reserved.
-* license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+* copyright 		: Copyright (C) 2025 ConseilGouz. All rights reserved.
+* license    		: https://www.gnu.org/licenses/gpl-3.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Version;
-use Joomla\CMS\Filesystem\File;
-use Joomla\CMS\Component\ComponentHelper;
+use Joomla\Database\DatabaseInterface;
+
 class com_cgdictionaryInstallerScript
 {
 	private $min_joomla_version      = '4.0';
@@ -28,7 +29,7 @@ class com_cgdictionaryInstallerScript
 	public function __construct()
 	{
 		$this->dir = __DIR__;
-		$this->lang = Factory::getLanguage();
+		$this->lang = Factory::getApplication()->getLanguage();
 		$this->lang->load($this->extname);
 	}
     function preflight($type, $parent)
@@ -53,22 +54,10 @@ class com_cgdictionaryInstallerScript
 			return true;
 		}
     }
-    
-    function install($parent)
-    {
-    }
-    
-    function uninstall($parent)
-    {
-    }
-    
-    function update($parent)
-    {
-    }
-    
+
     function postflight($type, $parent)
     {
-		$db = Factory::getDbo();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		$query = $db->getQuery(true)
 			->select('extension_id,params')
 			->from('#__extensions')
@@ -131,14 +120,14 @@ class com_cgdictionaryInstallerScript
 	
 	private function uninstallInstaller()
 	{
-		if ( ! JFolder::exists(JPATH_PLUGINS . '/system/' . $this->installerName)) {
+		if ( ! is_dir(JPATH_PLUGINS . '/system/' . $this->installerName)) {
 			return;
 		}
 		$this->delete([
 			JPATH_PLUGINS . '/system/' . $this->installerName . '/language',
 			JPATH_PLUGINS . '/system/' . $this->installerName,
 		]);
-		$db = Factory::getDbo();
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		$query = $db->getQuery(true)
 			->delete('#__extensions')
 			->where($db->quoteName('element') . ' = ' . $db->quote($this->installerName))
@@ -148,4 +137,16 @@ class com_cgdictionaryInstallerScript
 		$db->execute();
 		Factory::getCache()->clean('_system');
 	}
+    public function delete($files = [])
+    {
+        foreach ($files as $file) {
+            if (is_dir($file)) {
+                Folder::delete($file);
+            }
+
+            if (is_file($file)) {
+                File::delete($file);
+            }
+        }
+    }
 }

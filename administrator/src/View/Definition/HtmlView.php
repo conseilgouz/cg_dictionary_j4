@@ -1,19 +1,18 @@
 <?php
 
 /**
- * @version     2.0.2
- * @package     cg_dictionary pour Joomla 4.0
- * @copyright   Copyright (C) 2021. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     cg_dictionary pour Joomla 4.x/5.x/6.x
+ * @copyright   Copyright (C) 2025. All rights reserved.
+ * @license     GNU General Public License version 3 or later; see LICENSE.txt
  * @author      ConseilgGouz à partir de Dictionary de www.web-eau.net
  **/
 namespace ConseilGouz\Component\CGDictionary\Administrator\View\Definition;
 defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\Factory;
-use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Helper\ContentHelper;
-use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 class HtmlView extends BaseHtmlView {
 
@@ -42,12 +41,12 @@ class HtmlView extends BaseHtmlView {
      * Add the page title and toolbar.
      */
     protected function addToolbar() {
-        Factory::getApplication()->input->set('hidemainmenu', true);
+        Factory::getApplication()->getInput()->set('hidemainmenu', true);
 
-        $user = Factory::getUser();
+        $user = Factory::getApplication()->getIdentity();
         $isNew = ($this->item->id == 0);
         if (isset($this->item->checked_out)) {
-            $checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
+            $checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->id);
         } else {
             $checkedOut = false;
         }
