@@ -18,7 +18,7 @@ $this->pagination = array();
 $doc = Factory::getDocument();
 
 HTMLHelper::_('bootstrap.framework');
-HTMLHelper::_('bootstrap.framework');
+HTMLHelper::_('jquery.framework');
 $iso_layout ='masonry';
 
 $params = Factory::getApplication()->getParams('com_cgdictionary'); // global parameters
@@ -35,9 +35,9 @@ $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 
 $wa->registerAndUseStyle('dictionary','media/com_cgdictionary/css/dictionary.css');
 $wa->registerAndUseScript('imagesloaded', 'media/com_cgdictionary/js/imagesloaded.min.js');
-$doc->registerAndUseScript('isotope','media/com_cgdictionary/js/isotope.min.js');
-$doc->registerAndUseScript('packery','media/com_cgdictionary/js/packery-mode.min.js');
-$doc->registerAndUseScript('dictionary','media/com_cgdictionary/js/dictionary.js');
+$wa->registerAndUseScript('isotope','media/com_cgdictionary/js/isotope.min.js');
+$wa->registerAndUseScript('packery','media/com_cgdictionary/js/packery-mode.min.js');
+$wa->registerAndUseScript('dictionary','media/com_cgdictionary/js/dictionary.js');
 
 // send parameters to ditionary.js
 $doc->addScriptOptions('cg_dictionary', 

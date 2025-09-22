@@ -21,7 +21,7 @@ class DefinitionsModel extends ListModel {
      * @see        JController
      * @since    1.6
      */
-    public function __construct($config = array(), MVCFactoryInterface $factory = null) {
+    public function __construct($config = array(), ?MVCFactoryInterface $factory = null) {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
                 'id', 'a.id',

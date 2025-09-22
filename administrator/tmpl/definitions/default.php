@@ -21,6 +21,9 @@ HTMLHelper::_('behavior.multiselect');
 $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 $wa->registerAndUseStyle('dictionary', 'media/com_cgdictionary/css/dictionary.css');
 
+// Joomla 6.0 : list-view.js might not be loaded 
+$wa->useScript('list-view');
+
 $user	= Factory::getApplication()->getIdentity();
 $userId	= $user->id;
 $listOrder	= $this->state->get('list.ordering');
